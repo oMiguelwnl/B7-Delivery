@@ -1,0 +1,26 @@
+.container{
+  background-color: #fff;
+  display: flex;
+  padding: 6px;
+  border: 1px solid #fff;
+}
+
+.button{
+  width: 48px;
+  height: 48px;
+  background-color: #F9F9FB;
+  border-radius: 5px;
+
+}
+
+.input{
+  border: 0;
+  outline: 0;
+  flex: 1;
+  height: 48px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #979797;
+  margin-left: 13px;
+  border-radius: 5px;
+}
