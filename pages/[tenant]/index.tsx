@@ -1,5 +1,6 @@
 import { SearchInput } from "@/components/SearchInput";
 import styles from "../../styles/Home.module.css";
+import { Banner } from "@/components/Banner";
 
 const TenantPage = () => {
   const handleSearch = (searchValue: string) => {
@@ -27,6 +28,8 @@ const TenantPage = () => {
           <SearchInput color="#FB9400" onSearch={handleSearch} />
         </div>
       </header>
+
+      <Banner />
     </div>
   );
 };
