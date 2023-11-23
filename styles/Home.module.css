@@ -2,40 +2,38 @@
   background: #fff;
 }
 
-.header{
-  background: #F9F9FB;
+.header {
+  background: #f9f9fb;
   padding: 50px 24px 30px 24px;
 }
 
-.headerTop{
+.headerTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 27px;
 }
 
-.headerTopLeft{
-  
+.headerTopLeft {
 }
 
-.headerTitle{
-  color: #1B1B1B;
+.headerTitle {
+  color: #1b1b1b;
   font-weight: 500;
   font-size: 24px;
   margin-bottom: 8px;
 }
 
-.headersubTitle{
+.headersubTitle {
   color: rgba(151, 151, 151, 0.8);
   font-weight: 400;
   font-size: 16px;
 }
 
-.headerTopRight{
-  
+.headerTopRight {
 }
 
-.menuButtom{
+.menuButtom {
   width: 18px;
   height: 16px;
   display: flex;
@@ -43,11 +41,17 @@
   justify-content: space-between;
 }
 
-.menuButtomLine{
-  background-color: #FB9400;
+.menuButtomLine {
+  background-color: #000;
   height: 2px;
 }
 
-.headerButtom{
+.headerButtom {
+}
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 0 24px 0 24px;
 }
