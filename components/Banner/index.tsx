@@ -10,7 +10,7 @@ export const Banner = () => {
       <Swiper
         slidesPerView={1}
         className={styles.swiper}
-        loop={true}
+        // loop={true}
         autoplay={{
           delay: 1000,
           disableOnInteraction: false,

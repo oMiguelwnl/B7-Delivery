@@ -1,19 +1,21 @@
-.container{
+.container {
   background-color: #fff;
   display: flex;
   padding: 6px;
   border: 1px solid #fff;
 }
 
-.button{
+.button {
   width: 48px;
   height: 48px;
-  background-color: #F9F9FB;
+  background-color: #f9f9fb;
   border-radius: 5px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.input{
+.input {
   border: 0;
   outline: 0;
   flex: 1;
