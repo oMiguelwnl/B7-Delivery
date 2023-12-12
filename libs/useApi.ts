@@ -14,7 +14,7 @@ export const useApi = () => ({
         return {
           slug: "B7Pizza",
           name: "B7Pizza",
-          mainColor: "#ff0000",
+          mainColor: "#0000FF",
           secondColor: "#000000",
         };
       default:
