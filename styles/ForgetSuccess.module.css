@@ -1,0 +1,45 @@
+.container {
+  background-color: #fff;
+  padding: 50px 24px;
+}
+
+.header {
+  color: #1b1b1b;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.iconArea {
+  display: flex;
+  justify-content: center;
+  margin: 100px auto 53px auto;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.subTitle {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: rgba(27, 27, 27, 0.8);
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  position: relative;
+}
+
+.formArea {
+  margin-top: 40px;
+}
+
+.inputArea {
+  margin-bottom: 32px;
+}
