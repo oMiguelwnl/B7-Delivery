@@ -1,0 +1,23 @@
+.container {
+  background-color: #fff;
+}
+
+.headerArea {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 64px;
+}
+
+.headerBg {
+  height: 350px;
+  background-color: #333;
+  background-image: url("/assets/product-bg.png");
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.productImage {
+  text-align: center;
+  margin-top: -250px;
+}

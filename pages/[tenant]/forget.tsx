@@ -79,8 +79,18 @@ type Props = {
   tenant: Tenant;
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { tenant: tenantSlug } = context.query;
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { tenant: tenantSlug } = query as { tenant: string };
+
+  if (!tenantSlug) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   const api = useApi();
 
   // GET Tenant
@@ -94,6 +104,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
+
   return {
     props: {
       tenant,
