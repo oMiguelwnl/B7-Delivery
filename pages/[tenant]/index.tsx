@@ -6,7 +6,8 @@ import { GetServerSideProps } from "next";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/Tenant";
 import { useAppContext } from "@/contexts/AppContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Product } from "@/types/Product";
 
 const TenantPage = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
@@ -14,6 +15,8 @@ const TenantPage = (data: Props) => {
   useEffect(() => {
     setTenant(data.tenant);
   }, [data.tenant, setTenant]);
+
+  const [products, setProducts] = useState<Product[]>(data.products);
 
   const handleSearch = (searchValue: string) => {
     console.log(`Você está buscando por: ${searchValue}`);
@@ -54,35 +57,9 @@ const TenantPage = (data: Props) => {
       <Banner />
 
       <div className={styles.grid}>
-        <ProductItem
-          data={{
-            id: 1,
-            image: "/tmp/burger.png",
-            categoryName: "Tradicional",
-            name: "Texas Burger",
-            price: "R$ 25,50",
-          }}
-        />
-
-        <ProductItem
-          data={{
-            id: 2,
-            image: "/tmp/burger.png",
-            categoryName: "Tradicional",
-            name: "Texas Burger",
-            price: "R$ 25,50",
-          }}
-        />
-
-        <ProductItem
-          data={{
-            id: 3,
-            image: "/tmp/burger.png",
-            categoryName: "Tradicional",
-            name: "Texas Burger",
-            price: "R$ 25,50",
-          }}
-        />
+        {products.map((item, index) => (
+          <ProductItem key={index} data={item} />
+        ))}
       </div>
     </div>
   );
@@ -92,14 +69,15 @@ export default TenantPage;
 
 type Props = {
   tenant: Tenant;
+  products: Product[];
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { tenant: tenantSlug } = context.query;
-  const api = useApi();
+  const api = useApi(tenantSlug as string);
 
   // GET Tenant
-  const tenant = await api.getTenant(tenantSlug as string);
+  const tenant = await api.getTenant();
 
   if (!tenant) {
     return {
@@ -109,9 +87,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
+  // GET Products
+
+  const products = await api.getAllProducts();
   return {
     props: {
       tenant,
+      products,
     },
   };
 };
