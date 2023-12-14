@@ -8,6 +8,8 @@ import { Product } from "@/types/Product";
 import Head from "next/head";
 import { Header } from "@/components/Header";
 import Image from "next/image";
+import { Button } from "@/components/Button";
+import { useFormatter } from "@/libs/useFormatter";
 
 const Product = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
@@ -16,6 +18,8 @@ const Product = (data: Props) => {
     setTenant(data.tenant);
   }, [data.tenant, setTenant]);
 
+  const formatter = useFormatter();
+  const handleAddCart = () => {};
   return (
     <div className={styles.container}>
       <Head>
@@ -28,6 +32,7 @@ const Product = (data: Props) => {
           color={data.tenant.mainColor}
           backHref={`/${data.tenant.slug}`}
           title="Produto"
+          invert
         />
       </div>
       <div
@@ -35,9 +40,45 @@ const Product = (data: Props) => {
         style={{ backgroundColor: data.tenant.mainColor }}
       ></div>
       <div className={styles.productImage}>
-        <Image src={data.product.image} alt="" width={319} height={280} />
+        <Image
+          src={data.product.image}
+          width={319}
+          height={282}
+          alt="Product Image"
+        />
       </div>
-      ....
+
+      <div className={styles.category}>{data.product.categoryName}</div>
+      <div
+        className={styles.title}
+        style={{ borderBottomColor: data.tenant.mainColor }}
+      >
+        {data.product.name}
+      </div>
+      <div className={styles.line}></div>
+
+      <div className={styles.description}>{data.product.description}</div>
+
+      <div className={styles.qtText}>Quantidade</div>
+
+      <div className={styles.area}>
+        <div className={styles.areaLeft}>...</div>
+        <div
+          className={styles.areaRight}
+          style={{ color: data.tenant.mainColor }}
+        >
+          {formatter.formatPrice(data.product.price)}
+        </div>
+      </div>
+
+      <div className={styles.buttonArea}>
+        <Button
+          color={data.tenant.mainColor}
+          label="Adicionar à sacola"
+          onClick={handleAddCart}
+          fill
+        />
+      </div>
     </div>
   );
 };

@@ -11,6 +11,20 @@
   align-items: center;
 }
 
+.leftSide div,
+.rightSide div {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.buttonTransparent {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .centerSide {
   flex: 1;
   display: flex;

@@ -18,8 +18,8 @@ export const useApi = (tenantSlug: string) => ({
         return {
           slug: "b7burger",
           name: "b7burger",
-          mainColor: "#ff0000",
-          secondColor: "#00ff00",
+          mainColor: "#FFA500",
+          secondColor: "#000000",
         };
       case "B7Pizza":
         return {
