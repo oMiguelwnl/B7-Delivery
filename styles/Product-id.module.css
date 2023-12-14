@@ -24,7 +24,8 @@
 
 .productImage img {
   width: auto;
-  height: 350px;
+  height: 319px;
+  margin-top: 20px;
 }
 
 .category {

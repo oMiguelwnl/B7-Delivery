@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #f2f4f5;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.button {
+  font-weight: 500;
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #96a3ab;
+  background-color: black;
+}
+
+.qt {
+  font-weight: 700;
+  font-size: 18px;
+  color: #fb9400;
+  padding: 0 10px;
+  text-align: center;
+}
