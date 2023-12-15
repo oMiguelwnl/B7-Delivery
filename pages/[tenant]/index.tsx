@@ -5,7 +5,7 @@ import ProductItem from "@/components/ProductItem";
 import { GetServerSideProps } from "next";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/Tenant";
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useEffect, useState } from "react";
 import { Product } from "@/types/Product";
 
@@ -14,7 +14,7 @@ const TenantPage = (data: Props) => {
 
   useEffect(() => {
     setTenant(data.tenant);
-  }, [data.tenant, setTenant]);
+  }, []);
 
   const [products, setProducts] = useState<Product[]>(data.products);
 

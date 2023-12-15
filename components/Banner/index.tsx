@@ -10,7 +10,6 @@ export const Banner = () => {
       <Swiper
         slidesPerView={1}
         className={styles.swiper}
-        // loop={true}
         autoplay={{
           delay: 1000,
           disableOnInteraction: false,
@@ -18,20 +17,26 @@ export const Banner = () => {
         modules={[Autoplay]}
       >
         <SwiperSlide className={styles.slide}>
-          <Image
-            src="/tmp/banner1.png"
-            alt="Banner 1"
-            width={380}
-            height={190}
-          />
+          <div className={styles.imageContainer}>
+            <Image
+              src="/tmp/banner1.png"
+              alt="Banner 1"
+              width={380}
+              height={190}
+              priority={true}
+            />
+          </div>
         </SwiperSlide>
         <SwiperSlide className={styles.slide}>
-          <Image
-            src="/tmp/banner2.png"
-            alt="Banner 2"
-            width={380}
-            height={190}
-          />
+          <div className={styles.imageContainer}>
+            <Image
+              src="/tmp/banner2.png"
+              alt="Banner 2"
+              width={380}
+              height={190}
+              priority={true}
+            />
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>

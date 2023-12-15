@@ -2,7 +2,7 @@ import styles from "../../../styles/Product-id.module.css";
 import { GetServerSideProps } from "next";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/Tenant";
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useEffect, useState } from "react";
 import { Product } from "@/types/Product";
 import Head from "next/head";
@@ -17,7 +17,7 @@ const Product = (data: Props) => {
 
   useEffect(() => {
     setTenant(data.tenant);
-  }, [data.tenant, setTenant]);
+  }, []);
 
   const [qtCount, setQtCount] = useState(1);
   const handleUpdateQt = (newCount: number) => {

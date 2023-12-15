@@ -2,14 +2,13 @@ import styles from "../../styles/Forget.module.css";
 import { GetServerSideProps } from "next";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/Tenant";
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useEffect } from "react";
 import Head from "next/head";
 import { Header } from "@/components/Header";
 import { InputField } from "@/components/InputField";
 import { useState } from "react";
 import { Button } from "@/components/Button";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Forget = (data: Props) => {
@@ -17,7 +16,7 @@ const Forget = (data: Props) => {
 
   useEffect(() => {
     setTenant(data.tenant);
-  }, [data.tenant, setTenant]);
+  }, []);
 
   const router = useRouter();
 
@@ -91,10 +90,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     };
   }
 
-  const api = useApi();
+  const api = useApi(tenantSlug);
 
-  // GET Tenant
-  const tenant = await api.getTenant(tenantSlug as string);
+  // Obter informações do Tenant
+  const tenant = await api.getTenant();
 
   if (!tenant) {
     return {

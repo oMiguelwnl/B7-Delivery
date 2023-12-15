@@ -1,24 +1,21 @@
-import styles from "../../styles/ForgetSuccess.module.css";
 import { GetServerSideProps } from "next";
-import { useApi } from "@/libs/useApi";
-import { Tenant } from "@/types/Tenant";
-import { useAppContext } from "@/contexts/AppContext";
-import { useEffect } from "react";
 import Head from "next/head";
-import { Header } from "@/components/Header";
-import { InputField } from "@/components/InputField";
-import { useState } from "react";
-import { Button } from "@/components/Button";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { Button } from "@/components/Button";
+import { Header } from "@/components/Header";
 import { Icon } from "@/components/Icon";
+import { useAppContext } from "@/contexts/app";
+import { useApi } from "@/libs/useApi";
+import styles from "../../styles/ForgetSuccess.module.css";
+import { Tenant } from "@/types/Tenant";
 
 const ForgetSuccess = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
 
   useEffect(() => {
     setTenant(data.tenant);
-  }, [data.tenant, setTenant]);
+  }, []);
 
   const router = useRouter();
 
@@ -74,10 +71,10 @@ type Props = {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { tenant: tenantSlug } = context.query;
-  const api = useApi();
+  const api = useApi(tenantSlug as string);
 
   // GET Tenant
-  const tenant = await api.getTenant(tenantSlug as string);
+  const tenant = await api.getTenant();
 
   if (!tenant) {
     return {
@@ -87,6 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
+
   return {
     props: {
       tenant,

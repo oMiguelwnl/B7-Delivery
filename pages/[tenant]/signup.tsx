@@ -2,7 +2,7 @@ import styles from "../../styles/Signup.module.css";
 import { GetServerSideProps } from "next";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/Tenant";
-import { useAppContext } from "@/contexts/AppContext";
+import { useAppContext } from "@/contexts/app";
 import { useEffect } from "react";
 import Head from "next/head";
 import { Header } from "@/components/Header";
@@ -17,7 +17,7 @@ const SignUp = (data: Props) => {
 
   useEffect(() => {
     setTenant(data.tenant);
-  }, [data.tenant, setTenant]);
+  }, []);
 
   const router = useRouter();
 
@@ -107,10 +107,10 @@ type Props = {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { tenant: tenantSlug } = context.query;
-  const api = useApi();
+  const api = useApi(tenantSlug as string);
 
   // GET Tenant
-  const tenant = await api.getTenant(tenantSlug as string);
+  const tenant = await api.getTenant();
 
   if (!tenant) {
     return {
