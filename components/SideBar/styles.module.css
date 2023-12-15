@@ -1,0 +1,47 @@
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  background-color: #fff;
+  z-index: 999;
+  transition: all ease 0.2s;
+  overflow-x: hidden;
+}
+
+.area {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  margin: 78px 24px 0 24px;
+  position: relative;
+}
+
+.loginArea {
+  border-bottom: 1.5px solid #000;
+  margin-left: 24px;
+  padding-bottom: 48px;
+  min-width: 230px;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  font-size: 22px;
+  margin-left: auto;
+}
+
+.line {
+  margin: 0 24px;
+  border-bottom: 1.5px solid #e2e2e2;
+  margin-top: -1.5px;
+}

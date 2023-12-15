@@ -22,7 +22,13 @@ export const ProductItem = ({ data }: Props) => {
 
         <div className={styles.info}>
           <div className={styles.img}>
-            <Image src={data.image} alt={data.name} width={100} height={100} />
+            <Image
+              src={data.image}
+              alt={data.name}
+              width={100}
+              height={100}
+              priority={true}
+            />
           </div>
 
           <div className={styles.catName}>{data.categoryName}</div>

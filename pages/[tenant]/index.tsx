@@ -8,6 +8,7 @@ import { Tenant } from "@/types/Tenant";
 import { useAppContext } from "@/contexts/app";
 import { useEffect, useState } from "react";
 import { Product } from "@/types/Product";
+import { Sidebar } from "@/components/SideBar";
 
 const TenantPage = (data: Props) => {
   const { tenant, setTenant } = useAppContext();
@@ -17,6 +18,7 @@ const TenantPage = (data: Props) => {
   }, []);
 
   const [products, setProducts] = useState<Product[]>(data.products);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleSearch = (searchValue: string) => {
     console.log(`Você está buscando por: ${searchValue}`);
@@ -32,7 +34,10 @@ const TenantPage = (data: Props) => {
           </div>
 
           <div className={styles.headerTopRight}>
-            <div className={styles.menuButtom}>
+            <div
+              className={styles.menuButtom}
+              onClick={() => setSidebarOpen(true)}
+            >
               <div
                 className={styles.menuButtomLine}
                 style={{ backgroundColor: tenant?.mainColor }}
@@ -47,6 +52,11 @@ const TenantPage = (data: Props) => {
               ></div>
             </div>
           </div>
+          <Sidebar
+            tenant={data.tenant}
+            open={sidebarOpen}
+            onClose={() => setSidebarOpen(false)}
+          />
         </div>
 
         <div className={styles.headerBottom}>
