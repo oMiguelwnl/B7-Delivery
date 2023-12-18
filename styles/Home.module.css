@@ -55,3 +55,32 @@
   gap: 24px;
   margin: 0 24px 0 24px;
 }
+
+.searchtext {
+  margin: 24px;
+  color: #979797;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.searchtext strong {
+  font-weight: 600;
+}
+
+.noProducts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 235px;
+  margin: 88px auto;
+}
+
+.noProductstext {
+  color: #cdcdcd;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  margin-top: 32px;
+}

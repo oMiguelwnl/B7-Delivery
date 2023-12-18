@@ -11,20 +11,28 @@ import { useState } from "react";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAuthContext } from "@/contexts/auth";
 
 const Login = (data: Props) => {
+  const { setToken, setUser } = useAuthContext();
   const { tenant, setTenant } = useAppContext();
-
-  useEffect(() => {
-    setTenant(data.tenant);
-  }, []);
-
   const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {};
+  useEffect(() => {
+    setTenant(data.tenant);
+  }, []);
+
+  const handleSubmit = () => {
+    setToken("1234");
+    setUser({
+      name: "Miguel",
+      email: "support@mg.com.br",
+    });
+    router.push(`/${data.tenant.slug}`);
+  };
 
   const handleSignUp = () => {
     router.push(`/${data.tenant.slug}/signup`);

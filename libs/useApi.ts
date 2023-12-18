@@ -1,3 +1,4 @@
+import { User } from "@/styles/User";
 import { Product } from "@/types/Product";
 import { Tenant } from "@/types/Tenant";
 
@@ -18,15 +19,15 @@ export const useApi = (tenantSlug: string) => ({
         return {
           slug: "b7burger",
           name: "b7burger",
-          mainColor: "#FFA500",
-          secondColor: "#000000",
+          mainColor: "#FB9400",
+          secondColor: "#FFF9F2",
         };
       case "B7Pizza":
         return {
           slug: "B7Pizza",
           name: "B7Pizza",
-          mainColor: "#0000FF",
-          secondColor: "#000000",
+          mainColor: "#6AB70A",
+          secondColor: "#E0E0E0",
         };
       default:
         return false;
@@ -43,5 +44,13 @@ export const useApi = (tenantSlug: string) => ({
 
   getProduct: async (id: string) => {
     return temporaryProduct;
+  },
+
+  authotizeToken: async (token: string): Promise<User | false> => {
+    if (!token) return false;
+    return {
+      name: "Miguel",
+      email: "suporte@mg.com.br",
+    };
   },
 });
