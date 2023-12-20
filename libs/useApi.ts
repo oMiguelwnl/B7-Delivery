@@ -37,13 +37,13 @@ export const useApi = (tenantSlug: string) => ({
     let products = [];
 
     for (let q = 0; q < 10; q++) {
-      products.push(temporaryProduct);
+      products.push({ ...temporaryProduct, id: q + 1 });
     }
     return products;
   },
 
-  getProduct: async (id: string) => {
-    return temporaryProduct;
+  getProduct: async (id: number) => {
+    return { ...temporaryProduct, id };
   },
 
   authotizeToken: async (token: string): Promise<User | false> => {

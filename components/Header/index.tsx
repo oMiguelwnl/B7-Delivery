@@ -16,7 +16,7 @@ export const Header = ({ backHref, color, title, subTitle, invert }: Props) => {
       <div className={styles.leftSide}>
         <Link href={backHref}>
           <div className={invert ? styles.buttonTransparent : ""}>
-            <BackIcon color={invert ? "#fff" : "#1b1b1b"} />
+            <BackIcon color={invert ? "#fff" : color} />
           </div>
         </Link>
       </div>
