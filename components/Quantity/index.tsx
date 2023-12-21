@@ -54,7 +54,7 @@ export const Quantity = ({
         style={{
           fontSize: small ? 16 : 18,
           width: small ? 40 : 48,
-          height: small ? 42 : 24,
+          height: small ? 20 : 22,
         }}
       >
         {formater.FormatQuantity(count, 1)}

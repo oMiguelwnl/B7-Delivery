@@ -5,7 +5,7 @@ import { Tenant } from "@/types/Tenant";
 import { useAppContext } from "@/contexts/app";
 import { useEffect, useState } from "react";
 import { Product } from "@/types/Product";
-import { getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { User } from "@/styles/User";
 import { useAuthContext } from "@/contexts/auth";
 import Head from "next/head";
@@ -15,6 +15,8 @@ import { Button } from "@/components/Button";
 import { useFormatter } from "@/libs/useFormatter";
 import { CartItem } from "@/types/CartItem";
 import { useRouter } from "next/router";
+import { CartProductItem } from "@/components/CartProductItem/CartProductItem";
+import { CartCookie } from "@/types/CartCookie";
 
 const Cart = (data: Props) => {
   const { setToken, setUser } = useAuthContext();
@@ -24,13 +26,34 @@ const Cart = (data: Props) => {
     setTenant(data.tenant);
     setToken(data.token);
     if (data.user) setUser(data.user);
-  }, []);
+  }, [data.tenant, data.token, data.user]);
 
   const formatter = useFormatter();
   const router = useRouter();
 
   // Product Control
   const [cart, setCart] = useState<CartItem[]>(data.cart);
+
+  const handleCartChange = (newCount: number, id: number) => {
+    const tempCart: CartItem[] = [...cart];
+    const cartIndex = tempCart.findIndex((item) => item.product.id === id);
+
+    if (newCount > 0) {
+      tempCart[cartIndex].qt = newCount;
+    } else {
+      tempCart.splice(cartIndex, 1); // Remove the item from the array
+    }
+
+    setCart([...tempCart]);
+
+    // update cookie
+    let cartCookie: CartCookie[] = tempCart.map((item) => ({
+      id: item.product.id,
+      qt: item.qt,
+    }));
+
+    setCookie("cart", JSON.stringify(cartCookie));
+  };
 
   // Shipping
   const [shippingInput, setShippingInput] = useState("");
@@ -53,10 +76,10 @@ const Cart = (data: Props) => {
     }
     setSubTotal(sub);
   }, [cart]);
+
   const handleFinish = () => {
     router.push(`/${data.tenant.slug}/checkout`);
   };
-
   return (
     <div className={styles.container}>
       <Head>
@@ -73,7 +96,17 @@ const Cart = (data: Props) => {
         {cart.length} {cart.length === 1 ? "item" : "itens"}
       </div>
 
-      <div className={styles.productList}></div>
+      <div className={styles.productList}>
+        {cart.map((cartItem, index) => (
+          <CartProductItem
+            key={index}
+            color={data.tenant.mainColor}
+            quantity={cartItem.qt}
+            product={cartItem.product}
+            onChange={handleCartChange}
+          />
+        ))}
+      </div>
 
       <div className={styles.shippingArea}>
         <div className={styles.shippingTitle}>Calcular frete e prazo</div>
