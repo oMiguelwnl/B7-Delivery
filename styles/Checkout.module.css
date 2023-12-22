@@ -1,0 +1,116 @@
+.container {
+  background-color: #fff;
+  padding: 50px 24px;
+}
+
+.infoGroup {
+  margin-bottom: 40px;
+  border-top: 1.5px solid rgba(27, 27, 27, 0.1);
+}
+
+.infoArea {
+  padding-top: 24px;
+}
+
+.infoArea .infoTitle {
+  color: #1b1b1b;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.productsQuantity {
+  border-top: 1.5px solid rgba(27, 27, 27, 0.1);
+  border-bottom: 1.5px solid rgba(27, 27, 27, 0.1);
+  padding: 19px 0;
+  color: #1b1b1b;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.shippingArea {
+  margin-top: 31px;
+}
+
+.shippingTitle {
+  color: #6a7d8b;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.shippingForm {
+  display: flex;
+  gap: 14px;
+}
+
+.shippingInfo {
+  border-radius: 8px;
+  background: #f9f9fa;
+  margin-top: 16px;
+  padding: 24px 32px;
+}
+
+.shippingAddress {
+  color: #6a7d8b;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.shippingTime {
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+
+.shippingTimeText {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.shippingPrice {
+  color: #fb9400;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.resumeArea {
+  border-radius: 8px;
+  background: #f9f9fb;
+  margin-top: 16px;
+  padding: 48px 32px;
+}
+
+.resumeItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.resumeLeft {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.resumeRight {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.resumeLine {
+  border-top: 1px dashed #96a3ab;
+  margin-bottom: 29px;
+}
+
+.resumeRightBig {
+  color: #fb9400;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.resumeButton {
+  margin-top: 40px;
+}

@@ -1,4 +1,4 @@
-import styles from "../../styles/Cart.module.css";
+import styles from "../../styles/Checkout.module.css";
 import { GetServerSideProps } from "next";
 import { useApi } from "@/libs/useApi";
 import { Tenant } from "@/types/Tenant";
@@ -17,8 +17,9 @@ import { CartItem } from "@/types/CartItem";
 import { useRouter } from "next/router";
 import { CartProductItem } from "@/components/CartProductItem/CartProductItem";
 import { CartCookie } from "@/types/CartCookie";
+import { ButtonWithIcon } from "@/components/ButtonWithIcon";
 
-const Cart = (data: Props) => {
+const Checkout = (data: Props) => {
   const { setToken, setUser } = useAuthContext();
   const { tenant, setTenant } = useAppContext();
 
@@ -83,14 +84,43 @@ const Cart = (data: Props) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Sacola | {data.tenant.name}</title>
+        <title>Checkout | {data.tenant.name}</title>
       </Head>
 
       <Header
         backHref={`/${data.tenant.slug}`}
         color={data.tenant.mainColor}
-        title="Sacola"
+        title="Checkout"
       />
+      <div className={styles.infoGroup}>
+        <div className={styles.infoArea}>
+          <div className={styles.infoTitle}>Endereço</div>
+          <div className={styles.infoBody}>
+            <ButtonWithIcon
+              color={data.tenant.mainColor}
+              leftIcon={"location"}
+              rightIcon={"rightArrow"}
+              value={"Rua do céu"}
+              onClick={() => {}}
+            />
+          </div>
+        </div>
+
+        <div className={styles.infoArea}>
+          <div className={styles.infoTitle}>Tipo de Pagamento</div>
+          <div className={styles.infoBody}>...</div>
+        </div>
+
+        <div className={styles.infoArea}>
+          <div className={styles.infoTitle}>Troco</div>
+          <div className={styles.infoBody}>...</div>
+        </div>
+
+        <div className={styles.infoArea}>
+          <div className={styles.infoTitle}>Cupom de desconto</div>
+          <div className={styles.infoBody}>...</div>
+        </div>
+      </div>
 
       <div className={styles.productsQuantity}>
         {cart.length} {cart.length === 1 ? "item" : "itens"}
@@ -180,7 +210,7 @@ const Cart = (data: Props) => {
   );
 };
 
-export default Cart;
+export default Checkout;
 
 type Props = {
   tenant: Tenant;
