@@ -4,8 +4,8 @@
 }
 
 .infoGroup {
-  margin-bottom: 40px;
   border-top: 1.5px solid rgba(27, 27, 27, 0.1);
+  margin-bottom: 40px;
 }
 
 .infoArea {
@@ -13,10 +13,21 @@
 }
 
 .infoArea .infoTitle {
-  color: #1b1b1b;
-  font-size: 16px;
   font-weight: 400;
+  font-size: 16px;
+  color: #1b1b1b;
   margin-bottom: 8px;
+}
+
+.paymentTypes {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.paymentTypes,
+.paymentBtn {
+  flex: 1;
 }
 
 .productsQuantity {

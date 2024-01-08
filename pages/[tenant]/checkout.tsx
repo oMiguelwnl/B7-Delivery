@@ -81,6 +81,11 @@ const Checkout = (data: Props) => {
   const handleFinish = () => {
     router.push(`/${data.tenant.slug}/checkout`);
   };
+
+  const handleChangeAddress = () => {
+    console.log("Indo para a tela de endereço");
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -92,6 +97,7 @@ const Checkout = (data: Props) => {
         color={data.tenant.mainColor}
         title="Checkout"
       />
+
       <div className={styles.infoGroup}>
         <div className={styles.infoArea}>
           <div className={styles.infoTitle}>Endereço</div>
@@ -100,25 +106,59 @@ const Checkout = (data: Props) => {
               color={data.tenant.mainColor}
               leftIcon={"location"}
               rightIcon={"rightArrow"}
-              value={"Rua do céu"}
-              onClick={() => {}}
+              value={"321 - Rua das Flores - Jardins..."}
+              onClick={handleChangeAddress}
             />
           </div>
         </div>
 
         <div className={styles.infoArea}>
           <div className={styles.infoTitle}>Tipo de Pagamento</div>
-          <div className={styles.infoBody}>...</div>
+          <div className={styles.infoBody}>
+            <div className={styles.paymentTypes}>
+              <div className={styles.paymentBtn}>
+                <ButtonWithIcon
+                  color={data.tenant.mainColor}
+                  leftIcon="money"
+                  value="Dinheiro"
+                  onClick={() => {}}
+                  fill
+                />
+              </div>
+              <div className={styles.paymentBtn}>
+                <ButtonWithIcon
+                  color={data.tenant.mainColor}
+                  leftIcon="card"
+                  value="Cartão"
+                  onClick={() => {}}
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className={styles.infoArea}>
           <div className={styles.infoTitle}>Troco</div>
-          <div className={styles.infoBody}>...</div>
+          <div className={styles.infoBody}>
+            <InputField
+              color={data.tenant.mainColor}
+              onChange={(newValue) => {}}
+              placeholder="Quanto você tem em dinheiro?"
+              value={""}
+            />
+          </div>
         </div>
 
         <div className={styles.infoArea}>
           <div className={styles.infoTitle}>Cupom de desconto</div>
-          <div className={styles.infoBody}>...</div>
+          <div className={styles.infoBody}>
+            <ButtonWithIcon
+              color={data.tenant.mainColor}
+              leftIcon="cupom"
+              rightIcon="checked"
+              value="TESTE123"
+            />
+          </div>
         </div>
       </div>
 

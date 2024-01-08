@@ -17,19 +17,36 @@ export const ButtonWithIcon = ({
   onClick,
   fill,
 }: Props) => (
-  <div className={styles.container}>
+  <div
+    className={styles.container}
+    style={{ backgroundColor: fill ? color : "#F9F9FB" }}
+    onClick={onClick}
+  >
     {leftIcon && (
-      <div className={styles.leftSide}>
+      <div
+        className={styles.leftSide}
+        style={{ backgroundColor: fill ? "rgba(0,0,0,.05)" : "#fff" }}
+      >
         <Icon
           color={fill ? "#fff" : color}
-          icon={leftIcon}
+          svg={leftIcon}
           width={24}
           height={24}
         />
       </div>
     )}
 
-    <div className={styles.centerSide}></div>
-    <div className={styles.rightSide}></div>
+    <div
+      className={styles.centerSide}
+      style={{ color: fill ? "#fff" : "#1b1b1b" }}
+    >
+      {value}
+    </div>
+
+    {rightIcon && (
+      <div className={styles.rightSide}>
+        <Icon color={color} svg={rightIcon} width={24} height={24} />
+      </div>
+    )}
   </div>
 );
