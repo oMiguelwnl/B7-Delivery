@@ -30,6 +30,10 @@
   flex: 1;
 }
 
+.cupomInput {
+  display: flex;
+  gap: 14px;
+}
 .productsQuantity {
   border-top: 1.5px solid rgba(27, 27, 27, 0.1);
   border-bottom: 1.5px solid rgba(27, 27, 27, 0.1);

@@ -1,4 +1,5 @@
 import { User } from "@/styles/User";
+import { Address } from "@/types/Address";
 import { CartItem } from "@/types/CartItem";
 import { Product } from "@/types/Product";
 import { Tenant } from "@/types/Tenant";
@@ -47,7 +48,7 @@ export const useApi = (tenantSlug: string) => ({
     return { ...temporaryProduct, id };
   },
 
-  authotizeToken: async (token: string): Promise<User | false> => {
+  authorizeToken: async (token: string): Promise<User | false> => {
     if (!token) return false;
     return {
       name: "Miguel",
@@ -75,5 +76,22 @@ export const useApi = (tenantSlug: string) => ({
       }
     }
     return cart;
+  },
+  getUserAddresses: async (email: string) => {
+    const addresses: Address[] = [];
+
+    for (let i = 0; i < 4; i++) {
+      addresses.push({
+        id: i + 1,
+        street: "Rua das Flores",
+        number: `${i + 1}00`,
+        cep: "9999999",
+        city: "São Paulo",
+        neighborhood: "Jardins",
+        state: "SP",
+      });
+    }
+
+    return addresses;
   },
 });

@@ -147,7 +147,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // GET Logged User
 
   const token = getCookie("token", context);
-  const user = await api.authotizeToken(token as string);
+  const user = await api.authorizeToken(token as string);
 
   // GET Products
 

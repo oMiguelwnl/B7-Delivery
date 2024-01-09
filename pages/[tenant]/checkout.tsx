@@ -36,43 +36,26 @@ const Checkout = (data: Props) => {
   // Product Control
   const [cart, setCart] = useState<CartItem[]>(data.cart);
 
-  const handleCartChange = (newCount: number, id: number) => {
-    const tempCart: CartItem[] = [...cart];
-    const cartIndex = tempCart.findIndex((item) => item.product.id === id);
-
-    if (newCount > 0) {
-      tempCart[cartIndex].qt = newCount;
-    } else {
-      tempCart.splice(cartIndex, 1);
-    }
-
-    setCart([...tempCart]);
-
-    // update cookie
-    let cartCookie: CartCookie[] = tempCart.map((item) => ({
-      id: item.product.id,
-      qt: item.qt,
-    }));
-
-    setCookie("cart", JSON.stringify(cartCookie));
-  };
-
   // Shipping
   const [shippingPrice, setShippingPrice] = useState(0);
   const [shippingAddress, setShippingAddress] = useState<Address>();
 
   const handleChangeAddress = () => {
-    // router.push(`/${data.tenant.slug}/myaddresses`);
-    setShippingAddress({
-      id: 1,
-      cep: "9999999",
-      street: "Rua das Flores",
-      number: "321",
-      neighborhood: "Jardins",
-      city: "São Paulo",
-      state: "SP",
-    });
-    setShippingPrice(9.5);
+    router.push(`/${data.tenant.slug}/myaddresses`);
+  };
+  // Payments
+  const [paymentType, setPaymentType] = useState<"money" | "card">("money");
+  const [paymentChange, setPaymentChange] = useState(0);
+
+  // Cupom
+  const [cupom, setCupom] = useState("");
+  const [cupomDiscount, setCupomDiscount] = useState(0);
+  const [cupomInput, setCupomInput] = useState("");
+  const handleSetCupom = () => {
+    if (cupomInput) {
+      setCupom(cupomInput);
+      setCupomDiscount(15.2);
+    }
   };
 
   // Resume
@@ -86,7 +69,6 @@ const Checkout = (data: Props) => {
   }, [cart]);
 
   const handleFinish = () => {};
-
   return (
     <div className={styles.container}>
       <Head>
@@ -126,8 +108,8 @@ const Checkout = (data: Props) => {
                   color={data.tenant.mainColor}
                   leftIcon="money"
                   value="Dinheiro"
-                  onClick={() => {}}
-                  fill
+                  onClick={() => setPaymentType("money")}
+                  fill={paymentType === "money"}
                 />
               </div>
               <div className={styles.paymentBtn}>
@@ -135,34 +117,54 @@ const Checkout = (data: Props) => {
                   color={data.tenant.mainColor}
                   leftIcon="card"
                   value="Cartão"
-                  onClick={() => {}}
+                  onClick={() => setPaymentType("card")}
+                  fill={paymentType === "card"}
                 />
               </div>
             </div>
           </div>
         </div>
 
-        <div className={styles.infoArea}>
-          <div className={styles.infoTitle}>Troco</div>
-          <div className={styles.infoBody}>
-            <InputField
-              color={data.tenant.mainColor}
-              onChange={(newValue) => {}}
-              placeholder="Quanto você tem em dinheiro?"
-              value={""}
-            />
+        {paymentType === "money" && (
+          <div className={styles.infoArea}>
+            <div className={styles.infoTitle}>Troco</div>
+            <div className={styles.infoBody}>
+              <InputField
+                color={data.tenant.mainColor}
+                placeholder="Quanto você tem em dinheiro?"
+                value={paymentChange ? paymentChange.toString() : ""}
+                onChange={(newValue) => setPaymentChange(parseInt(newValue))}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className={styles.infoArea}>
           <div className={styles.infoTitle}>Cupom de desconto</div>
           <div className={styles.infoBody}>
-            <ButtonWithIcon
-              color={data.tenant.mainColor}
-              leftIcon="cupom"
-              rightIcon="checked"
-              value="TESTE123"
-            />
+            {cupom && (
+              <ButtonWithIcon
+                color={data.tenant.mainColor}
+                leftIcon="cupom"
+                rightIcon="checked"
+                value={cupom.toUpperCase()}
+              />
+            )}
+            {!cupom && (
+              <div className={styles.cupomInput}>
+                <InputField
+                  color={data.tenant.mainColor}
+                  placeholder="Tem um cupom?"
+                  value={cupomInput}
+                  onChange={(newValue) => setCupomInput(newValue)}
+                />
+                <Button
+                  color={data.tenant.mainColor}
+                  label="OK"
+                  onClick={handleSetCupom}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -178,7 +180,7 @@ const Checkout = (data: Props) => {
             color={data.tenant.mainColor}
             quantity={cartItem.qt}
             product={cartItem.product}
-            onChange={handleCartChange}
+            onChange={() => {}}
             noEdit
           />
         ))}
@@ -191,6 +193,15 @@ const Checkout = (data: Props) => {
             {formatter.formatPrice(subTotal)}
           </div>
         </div>
+
+        {cupomDiscount > 0 && (
+          <div className={styles.resumeItem}>
+            <div className={styles.resumeLeft}>Desconto</div>
+            <div className={styles.resumeRight}>
+              -{formatter.formatPrice(cupomDiscount)}
+            </div>
+          </div>
+        )}
 
         <div className={styles.resumeItem}>
           <div className={styles.resumeLeft}>Frete</div>
@@ -206,7 +217,7 @@ const Checkout = (data: Props) => {
             className={styles.resumeRightBig}
             style={{ color: data.tenant.mainColor }}
           >
-            {formatter.formatPrice(shippingPrice + subTotal)}
+            {formatter.formatPrice(subTotal - cupomDiscount + shippingPrice)}
           </div>
         </div>
 
@@ -251,7 +262,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // GET Logged User
   const token = getCookie("token", context);
-  const user = await api.authotizeToken(token as string);
+  const user = await api.authorizeToken(token as string);
 
   // GET Cart Products
   const cartCookie = getCookie("cart", context);

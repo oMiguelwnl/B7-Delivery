@@ -1,11 +1,10 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="48" height="48" rx="5" fill="white"/>
-<g clip-path="url(#clip0_2302_54)">
-<path d="M15 15H33C33.2652 15 33.5196 15.1054 33.7071 15.2929C33.8946 15.4804 34 15.7348 34 16V32C34 32.2652 33.8946 32.5196 33.7071 32.7071C33.5196 32.8946 33.2652 33 33 33H15C14.7348 33 14.4804 32.8946 14.2929 32.7071C14.1054 32.5196 14 32.2652 14 32V16C14 15.7348 14.1054 15.4804 14.2929 15.2929C14.4804 15.1054 14.7348 15 15 15ZM32 23H16V31H32V23ZM32 21V17H16V21H32ZM26 27H30V29H26V27Z" fill="currentColor"/>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_422_1022)">
+<path d="M3 3H21C21.2652 3 21.5196 3.10536 21.7071 3.29289C21.8946 3.48043 22 3.73478 22 4V20C22 20.2652 21.8946 20.5196 21.7071 20.7071C21.5196 20.8946 21.2652 21 21 21H3C2.73478 21 2.48043 20.8946 2.29289 20.7071C2.10536 20.5196 2 20.2652 2 20V4C2 3.73478 2.10536 3.48043 2.29289 3.29289C2.48043 3.10536 2.73478 3 3 3ZM20 11H4V19H20V11ZM20 9V5H4V9H20ZM14 15H18V17H14V15Z" fill="currentColor"/>
 </g>
 <defs>
-<clipPath id="clip0_2302_54">
-<rect width="24" height="24" fill="white" transform="translate(12 12)"/>
+<clipPath id="clip0_422_1022">
+<rect width="24" height="24" fill="white"/>
 </clipPath>
 </defs>
 </svg>
