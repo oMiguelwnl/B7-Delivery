@@ -5,6 +5,9 @@ import Location from "./location.svg";
 import Money from "./money.svg";
 import Card from "./card.svg";
 import RightArrow from "./rigtharrow.svg";
+import Dots from "./dots.svg";
+import Edit from "./edit.svg";
+import Delete from "./delete.svg";
 
 type Props = {
   width: number;
@@ -22,6 +25,10 @@ export const Icon = ({ svg, color, width, height }: Props) => {
       {svg === "location" && <Location color={color} />}
       {svg === "money" && <Money color={color} />}
       {svg === "rightArrow" && <RightArrow color={color} />}
+      {svg === "dots" && <Dots color={color} />}
+      {svg === "edit" && <Edit color={color} />}
+      {svg === "delete" && <Delete color={color} />}
+
     </div>
   );
 };

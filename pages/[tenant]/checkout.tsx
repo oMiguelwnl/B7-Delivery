@@ -22,7 +22,7 @@ import { Address } from "@/types/Address";
 
 const Checkout = (data: Props) => {
   const { setToken, setUser } = useAuthContext();
-  const { tenant, setTenant } = useAppContext();
+  const { tenant, setTenant, shippingAddress, shippingPrice } = useAppContext();
 
   useEffect(() => {
     setTenant(data.tenant);
@@ -37,8 +37,6 @@ const Checkout = (data: Props) => {
   const [cart, setCart] = useState<CartItem[]>(data.cart);
 
   // Shipping
-  const [shippingPrice, setShippingPrice] = useState(0);
-  const [shippingAddress, setShippingAddress] = useState<Address>();
 
   const handleChangeAddress = () => {
     router.push(`/${data.tenant.slug}/myaddresses`);

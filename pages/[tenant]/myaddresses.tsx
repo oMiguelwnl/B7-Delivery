@@ -14,10 +14,12 @@ import { CartItem } from "@/types/CartItem";
 import { useRouter } from "next/router";
 import { Button } from "@/components/Button";
 import { Address } from "@/types/Address";
+import { AddressItem } from "@/components/AddressItem";
 
 const MyAddresses = (data: Props) => {
   const { setToken, setUser } = useAuthContext();
-  const { tenant, setTenant } = useAppContext();
+  const { tenant, setTenant, setShippingAddress, setShippingPrice } =
+    useAppContext();
 
   useEffect(() => {
     setTenant(data.tenant);
@@ -27,10 +29,39 @@ const MyAddresses = (data: Props) => {
 
   const formatter = useFormatter();
   const router = useRouter();
+  const api = useApi(data.tenant.slug);
 
   const handleNewAddress = () => {
     router.push(`/${data.tenant.slug}/newaddress`);
   };
+
+  const handleAddressSelect = async (address: Address) => {
+    const price = await api.getShiipingPrice(address);
+    if (price) {
+      setShippingAddress(address);
+      setShippingPrice(price);
+      router.push(`/${data.tenant.slug}/checkout`);
+    }
+    console.log(`Selecionou o endereço: ${address.street} ${address.number}`);
+  };
+  const handleAddressEdit = (id: number) => {};
+  const handleAddressDelete = (id: number) => {};
+
+  // Menu Events
+  const [menuOpened, setMenuOpened] = useState(0);
+  const handleMenuEvent = (event: MouseEvent) => {
+    const tagname = (event.target as Element).tagName;
+    if (!["path", "svg"].includes(tagname)) {
+      setMenuOpened(0);
+    }
+  };
+
+  useEffect(() => {
+    window.removeEventListener("click", handleMenuEvent);
+    window.addEventListener("click", handleMenuEvent);
+
+    return () => window.removeEventListener("click", handleMenuEvent);
+  }, [menuOpened]);
 
   return (
     <div className={styles.container}>
@@ -46,9 +77,16 @@ const MyAddresses = (data: Props) => {
 
       <div className={styles.list}>
         {data.addresses.map((item, index) => (
-          <div key={index}>
-            {item.street} - {item.number}
-          </div>
+          <AddressItem
+            key={index}
+            color={data.tenant.mainColor}
+            address={item}
+            onSelect={handleAddressSelect}
+            onEdit={handleAddressEdit}
+            onDelete={handleAddressDelete}
+            menuOpened={menuOpened}
+            setMenuOpened={setMenuOpened}
+          />
         ))}
       </div>
 

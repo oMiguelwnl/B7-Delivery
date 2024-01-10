@@ -94,4 +94,7 @@ export const useApi = (tenantSlug: string) => ({
 
     return addresses;
   },
+  getShiipingPrice: async (address: Address) => {
+    return 9.16;
+  },
 });
