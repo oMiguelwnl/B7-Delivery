@@ -31,10 +31,6 @@ const MyAddresses = (data: Props) => {
   const router = useRouter();
   const api = useApi(data.tenant.slug);
 
-  const handleNewAddress = () => {
-    router.push(`/${data.tenant.slug}/newaddress`);
-  };
-
   const handleAddressSelect = async (address: Address) => {
     const price = await api.getShiipingPrice(address);
     if (price) {
@@ -44,11 +40,18 @@ const MyAddresses = (data: Props) => {
     }
     console.log(`Selecionou o endereço: ${address.street} ${address.number}`);
   };
-  const handleAddressEdit = (id: number) => {};
+  const handleAddressEdit = (id: number) => {
+    router.push(`/${data.tenant.slug}/address/${id}`);
+  };
   const handleAddressDelete = (id: number) => {};
+
+  const handleNewAddress = () => {
+    router.push(`/${data.tenant.slug}/address/new`);
+  };
 
   // Menu Events
   const [menuOpened, setMenuOpened] = useState(0);
+
   const handleMenuEvent = (event: MouseEvent) => {
     const tagname = (event.target as Element).tagName;
     if (!["path", "svg"].includes(tagname)) {

@@ -1,0 +1,31 @@
+.container {
+  background-color: #fff;
+  padding: 50px 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.inputs {
+  border-top: 1.5px solid rgba(27, 27, 27, 0.1);
+}
+
+.row {
+  display: flex;
+  margin-top: 24px;
+  gap: 24px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.column input {
+  width: 1px;
+}
+
+.btnArea {
+  margin-top: 24px;
+}
