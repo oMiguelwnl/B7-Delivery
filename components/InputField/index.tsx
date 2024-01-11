@@ -9,6 +9,9 @@ type Props = {
   value: string;
   onChange: (newValue: string) => void;
   password?: boolean;
+  warning?: boolean;
+  errorMessage?: string;
+  onEnterPress?: () => void;
 };
 
 export const InputField = ({
@@ -17,15 +20,18 @@ export const InputField = ({
   value,
   onChange,
   password,
+  warning,
+  errorMessage,
+  onEnterPress,
 }: Props) => {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div
-      className={styles.container}
+      className={`${styles.container} ${errorMessage ? styles.error : ""}`}
       style={{
-        borderColor: focused ? color : "#f9f9fb",
+        borderColor: !warning ? (focused ? color : "#f9f9fb") : "#ff0000",
         backgroundColor: focused ? "#fff" : "#f9f9fb",
       }}
     >
@@ -37,7 +43,15 @@ export const InputField = ({
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
+        onKeyPress={(e) => {
+          if (e.key === "Enter" && onEnterPress) {
+            onEnterPress();
+          }
+        }}
       />
+      {errorMessage && (
+        <div className={styles.errorMessage}>{errorMessage}</div>
+      )}
       {password && (
         <div
           onClick={() => setShowPassword(!showPassword)}

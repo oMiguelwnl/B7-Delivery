@@ -38,12 +38,15 @@ const MyAddresses = (data: Props) => {
       setShippingPrice(price);
       router.push(`/${data.tenant.slug}/checkout`);
     }
-    console.log(`Selecionou o endereço: ${address.street} ${address.number}`);
   };
+
   const handleAddressEdit = (id: number) => {
     router.push(`/${data.tenant.slug}/address/${id}`);
   };
-  const handleAddressDelete = (id: number) => {};
+  const handleAddressDelete = async (id: number) => {
+    await api.deleteUserAddress(id);
+    router.reload();
+  };
 
   const handleNewAddress = () => {
     router.push(`/${data.tenant.slug}/address/new`);

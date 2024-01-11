@@ -94,6 +94,32 @@ export const useApi = (tenantSlug: string) => ({
 
     return addresses;
   },
+
+  getUserAddress: async (addressid: number) => {
+    let address: Address = {
+      id: addressid,
+      street: "Rua das Flores",
+      number: `${addressid}00`,
+      cep: "9999999",
+      city: "São Paulo",
+      neighborhood: "Jardins",
+      state: "SP",
+    };
+    return address;
+  },
+
+  addUserAddress: async (address: Address) => {
+    return { ...address, id: 9 };
+  },
+
+  editUserAddress: async (newAddressData: Address) => {
+    return true;
+  },
+
+  deleteUserAddress: async (addressid: number) => {
+    return true;
+  },
+
   getShiipingPrice: async (address: Address) => {
     return 9.16;
   },
