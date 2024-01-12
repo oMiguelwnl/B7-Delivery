@@ -66,7 +66,7 @@ const EditAddress = (data: Props) => {
       approved = false;
     }
 
-    if (addressState.length !== 2 || !/^[a-zA-Z]{2}$/.test(addressState)) {
+    if (address.state.length !== 2) {
       newErrorFields.push("state");
       approved = false;
     }

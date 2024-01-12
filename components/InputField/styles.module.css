@@ -22,3 +22,7 @@
   display: flex;
   align-items: center;
 }
+
+.errorMessage {
+  font-size: 14px;
+}

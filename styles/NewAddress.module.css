@@ -25,11 +25,6 @@
 .column input {
   width: 1px;
 }
-.errorMessage {
-  color: #ff0000;
-  font-size: 14px;
-  margin-top: 8px;
-}
 
 .btnArea {
   margin-top: 24px;

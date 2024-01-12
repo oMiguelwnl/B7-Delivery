@@ -1,6 +1,7 @@
 import { User } from "@/styles/User";
 import { Address } from "@/types/Address";
 import { CartItem } from "@/types/CartItem";
+import { Order } from "@/types/Order";
 import { Product } from "@/types/Product";
 import { Tenant } from "@/types/Tenant";
 
@@ -12,6 +13,33 @@ const temporaryProduct: Product = {
   price: 25.5,
   description:
     "2 Blends de carne de 150g, Queijo Cheddar, Bacon Caramelizado, Salada, Molho da casa, Pão brioche artesanal",
+};
+
+const TEMPORARYorder: Order = {
+  id: 123,
+  status: "preparing",
+  orderDate: "2024-02-04",
+  userId: "123",
+  shippingAddress: {
+    id: 2,
+    street: "Rua das Flores",
+    number: "230",
+    cep: "49173041",
+    city: "Rio de Janeiro",
+    neighborhood: "Lapa",
+    state: "RJ",
+  },
+  shippingPrice: 9.14,
+  paymentType: "card",
+  cupom: "ola",
+  cupomDiscount: 14.3,
+  products: [
+    { product: { ...temporaryProduct, id: 1 }, qt: 1 },
+    { product: { ...temporaryProduct, id: 2 }, qt: 2 },
+    { product: { ...temporaryProduct, id: 3 }, qt: 1 },
+  ],
+  subtotal: 204,
+  total: 198.84,
 };
 
 export const useApi = (tenantSlug: string) => ({
@@ -122,5 +150,15 @@ export const useApi = (tenantSlug: string) => ({
 
   getShiipingPrice: async (address: Address) => {
     return 9.16;
+  },
+
+  setOrder: async (
+    address: Address,
+    paymentType: "money" | "cart",
+    paymentChange: number,
+    cupom: string,
+    cart: CartItem[]
+  ) => {
+    return TEMPORARYorder;
   },
 });

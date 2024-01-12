@@ -32,6 +32,7 @@ const Checkout = (data: Props) => {
 
   const formatter = useFormatter();
   const router = useRouter();
+  const api = useApi(data.tenant.slug);
 
   // Product Control
   const [cart, setCart] = useState<CartItem[]>(data.cart);
@@ -66,7 +67,47 @@ const Checkout = (data: Props) => {
     setSubTotal(sub);
   }, [cart]);
 
-  const handleFinish = () => {};
+  const handleFinish = async () => {
+    if (shippingAddress) {
+      try {
+        let adjustedPaymentType: "cart" | "money";
+
+        if (paymentType === "card") {
+          // Se o pagamento for por cartão, ajuste para "cart"
+          adjustedPaymentType = "cart";
+        } else {
+          // Caso contrário, use o valor existente (pode ser "money")
+          adjustedPaymentType = paymentType;
+        }
+
+        const order = await api.setOrder(
+          shippingAddress,
+          adjustedPaymentType,
+          paymentChange,
+          cupom,
+          data.cart
+        );
+
+        if (order && order.id) {
+          router.push(`/${data.tenant.slug}/order/${order.id}`);
+        } else {
+          alert(
+            "Ocorreu um erro ao processar o pedido. Tente novamente mais tarde."
+          );
+        }
+      } catch (error) {
+        console.error("Erro ao criar o pedido:", error);
+        alert(
+          "Ocorreu um erro ao processar o pedido. Tente novamente mais tarde."
+        );
+      }
+    } else {
+      alert(
+        "Por favor, escolha um endereço de envio antes de finalizar o pedido."
+      );
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Head>
