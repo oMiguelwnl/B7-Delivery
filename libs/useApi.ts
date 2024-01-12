@@ -161,4 +161,7 @@ export const useApi = (tenantSlug: string) => ({
   ) => {
     return TEMPORARYorder;
   },
+  getOrder: async (orderid: number) => {
+    return TEMPORARYorder;
+  },
 });

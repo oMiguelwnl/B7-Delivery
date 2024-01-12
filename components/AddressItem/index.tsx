@@ -33,8 +33,6 @@ export const AddressItem = ({
           <Icon color={color} svg="location" width={24} height={24} />
         </div>
         <div className={styles.addrestext}>
-          {`${address.street} ${address.number}, ${address.city}`}{" "}
-          {`${address.street} ${address.number}, ${address.city}`}
           {`${address.street} ${address.number}, ${address.city}`}
         </div>
       </div>

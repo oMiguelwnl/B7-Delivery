@@ -14,5 +14,9 @@ export const useFormatter = () => {
         return qt;
       }
     },
+    formatDate: (date: string) => {
+      let currentDate = new Date(`${date} 00:00:00`);
+      return new Intl.DateTimeFormat("pt-br").format(currentDate);
+    },
   };
 };
