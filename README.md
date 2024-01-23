@@ -3,6 +3,7 @@
 <p align="center">
 <img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
+
 ## 📜 Descrição
 
 O B7Delivery é um sistema multi tenant desenvolvido para oferecer uma solução eficiente e intuitiva para estabelecimentos como lanchonetes e restaurantes, permitindo que eles realizem vendas online de seus produtos de maneira prática e personalizada.
